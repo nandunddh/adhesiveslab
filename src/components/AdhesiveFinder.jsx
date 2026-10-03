@@ -39,7 +39,7 @@ export default function AdhesiveFinder({ onSelectProduct, onOpenQuote }) {
               <Sparkles size={14} />
               <span>Smart Adhesive Selector Tool</span>
             </div>
-            <h3>Find The Exact Adhesive For Your Joint</h3>
+            <h2 className="section-title">Find The Exact Adhesive For Your Joint</h2>
             <p>
               Match your substrates, temperature thresholds, and production cycle times to find the optimal formulation.
             </p>

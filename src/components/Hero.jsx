@@ -182,7 +182,7 @@ export default function Hero({ onOpenQuote, onExploreProducts }) {
 
         {/* ── Main Two-Column Hero Stage ───────────────────────────────── */}
         <div className="hero-cinematic-grid">
-          
+
           {/* ══ Column 1: Left Content & Animated Typography ══════════════ */}
           <div className="hero-content-col">
             <div className="hero-tag-wrap">
@@ -199,11 +199,12 @@ export default function Hero({ onOpenQuote, onExploreProducts }) {
 
             {/* Redesigned Specification Pill */}
             <div className="hero-spec-pill">
-              <div className="spec-pill-badge">
-                <span className="spec-beacon-ring">
-                  <span className="spec-beacon-core" />
-                </span>
-                <span className="spec-badge-text">STANDARD //</span>
+              <div className="spec-pill-top">
+
+                <div className="spec-pill-tag">
+                  <ShieldCheck size={12} className="spec-shield-icon" />
+                  <span>CERTIFIED</span>
+                </div>
               </div>
               <div className="spec-pill-divider" />
               <div className="spec-pill-content">
@@ -212,15 +213,11 @@ export default function Hero({ onOpenQuote, onExploreProducts }) {
                   <span className="spec-pill-cursor">_</span>
                 </span>
               </div>
-              <div className="spec-pill-tag">
-                <ShieldCheck size={13} className="spec-shield-icon" />
-                <span>CERTIFIED</span>
-              </div>
             </div>
 
             <p className="hero-cinematic-description">
-              High-performance structural epoxies, instant-cure cyanoacrylates, 
-              and thermal elastomeric sealants engineered to withstand extreme pressures, 
+              High-performance structural epoxies, instant-cure cyanoacrylates,
+              and thermal elastomeric sealants engineered to withstand extreme pressures,
               vibrations, and chemical exposure across aerospace, automotive, and heavy industry.
             </p>
 
@@ -283,6 +280,7 @@ export default function Hero({ onOpenQuote, onExploreProducts }) {
                   src={currentSpecimen.image}
                   alt={currentSpecimen.title}
                   className={`specimen-image ${isFading ? 'fading' : 'active'}`}
+                  fetchPriority="high"
                 />
                 <div className="specimen-scanline" />
                 <div className="specimen-overlay-gradient" />

@@ -111,52 +111,67 @@ export default function StressSimulator({ onOpenQuote }) {
                         <feGaussianBlur stdDeviation="4" result="blur" />
                         <feComposite in="SourceGraphic" in2="blur" operator="over" />
                       </filter>
+
+                      {/* Text Drop Shadow Filter */}
+                      <filter id="textShadow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feDropShadow dx="0" dy="1" stdDeviation="1.5" floodColor="#050B14" floodOpacity="0.95" />
+                      </filter>
                     </defs>
 
                     {/* Top Substrate */}
-                    <rect x="50" y="30" width="400" height="45" rx="6" fill="url(#metalGrad)" stroke="#94A3B8" strokeWidth="1.5" />
-                    <text x="70" y="58" fill="#F8FAFC" fontSize="13" fontWeight="700">SUBSTRATE A (Upper Component)</text>
-                    <text x="360" y="58" fill="#CBD5E1" fontSize="11">Tensile Pull ➔</text>
-
-                    {/* Adhesive Bond Layer with Dynamic Glowing Heatmap */}
-                    <g filter="url(#glow)">
-                      <rect 
-                        x="50" 
-                        y="90" 
-                        width="400" 
-                        height="26" 
-                        rx="4" 
-                        fill="url(#stressGrad)" 
-                        opacity="0.95"
-                      />
-                    </g>
-                    <text x="140" y="108" fill="#FFFFFF" fontSize="12" fontWeight="800" letterSpacing="0.5">
-                      ADHESIVE BOND LAYER: UNIFORM LOAD DISPERSION
-                    </text>
+                    <rect x="40" y="28" width="420" height="46" rx="6" fill="url(#metalGrad)" stroke="#94A3B8" strokeWidth="1.5" />
+                    <text x="58" y="56" fill="#F8FAFC" fontSize="12.5" fontWeight="700">SUBSTRATE A (Upper Component)</text>
+                    <text x="442" y="56" fill="#38BDF8" fontSize="11" fontWeight="700" textAnchor="end">Tensile Pull →</text>
 
                     {/* Bottom Substrate */}
-                    <rect x="50" y="130" width="400" height="45" rx="6" fill="url(#metalGrad)" stroke="#94A3B8" strokeWidth="1.5" />
-                    <text x="70" y="158" fill="#F8FAFC" fontSize="13" fontWeight="700">SUBSTRATE B (Base Component)</text>
-                    <text x="60" y="158" fill="#CBD5E1" fontSize="11" textAnchor="end">◀ Shear Load</text>
+                    <rect x="40" y="128" width="420" height="46" rx="6" fill="url(#metalGrad)" stroke="#94A3B8" strokeWidth="1.5" />
+                    <text x="58" y="156" fill="#F8FAFC" fontSize="12.5" fontWeight="700">SUBSTRATE B (Base Component)</text>
+                    <text x="442" y="156" fill="#F97316" fontSize="11" fontWeight="700" textAnchor="end">← Opposing Shear</text>
 
-                    {/* Stress Flux Lines */}
+                    {/* Stress Flux Lines (Rendered behind adhesive layer to prevent text collision) */}
                     {Array.from({ length: 9 }).map((_, i) => (
                       <line
                         key={i}
-                        x1={80 + i * 42}
-                        y1="75"
-                        x2={80 + i * 42}
-                        y2="130"
-                        stroke={stressPercentage > 80 ? "#EF4444" : "#10B981"}
+                        x1={70 + i * 45}
+                        y1="74"
+                        x2={70 + i * 45}
+                        y2="128"
+                        stroke={stressPercentage > 85 ? "#EF4444" : stressPercentage > 60 ? "#F97316" : "#10B981"}
                         strokeWidth="2"
                         strokeDasharray="4 3"
                         opacity="0.8"
                       />
                     ))}
 
+                    {/* Adhesive Bond Layer with Dynamic Glowing Heatmap */}
+                    <g filter="url(#glow)">
+                      <rect 
+                        x="40" 
+                        y="86" 
+                        width="420" 
+                        height="30" 
+                        rx="5" 
+                        fill="url(#stressGrad)" 
+                        opacity="0.96"
+                      />
+                    </g>
+                    {/* Centered bond layer text with crisp shadow (no dark patch) */}
+                    <text 
+                      x="250" 
+                      y="105" 
+                      fill="#FFFFFF" 
+                      fontSize="11" 
+                      fontWeight="800" 
+                      letterSpacing="0.8" 
+                      textAnchor="middle"
+                      filter="url(#textShadow)"
+                    >
+                      ADHESIVE BOND LAYER: UNIFORM LOAD DISPERSION
+                    </text>
+
                     {/* Mechanical Rivet Comparison Callout */}
-                    <rect x="50" y="195" width="400" height="32" rx="4" fill="rgba(11,25,44,0.7)" />
-                    <text x="65" y="216" fill="#94A3B8" fontSize="11">
+                    <rect x="40" y="192" width="420" height="34" rx="6" fill="rgba(11,25,44,0.75)" stroke="rgba(255, 255, 255, 0.08)" strokeWidth="1" />
+                    <text x="250" y="213" fill="#94A3B8" fontSize="9.5" fontWeight="500" textAnchor="middle">
                       ⚠️ Rivets create 450% stress spikes at drill holes. Polymer bond distributes 100% uniformly.
                     </text>
                   </svg>

@@ -53,11 +53,13 @@ export default function App() {
         onNavigate={handleNavigate}
       />
 
-      {/* Hero Section matching mockup with live pulse telemetry */}
-      <Hero 
-        onOpenQuote={handleOpenQuote}
-        onExploreProducts={() => handleNavigate('products')}
-      />
+      {/* Main Content Landmark for SEO & Accessibility */}
+      <main id="main-content" role="main">
+        {/* Hero Section matching mockup with live pulse telemetry */}
+        <Hero 
+          onOpenQuote={handleOpenQuote}
+          onExploreProducts={() => handleNavigate('products')}
+        />
 
       {/* 4-Item Value Proposition Highlight Strip */}
       <ValueProps />
@@ -107,6 +109,7 @@ export default function App() {
 
       {/* About Us & Industrial Engineering Center */}
       <AboutSection />
+      </main>
 
       {/* Footer (from Mockup) */}
       <Footer 

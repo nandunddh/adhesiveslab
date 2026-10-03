@@ -1,0 +1,6 @@
+# Robots.txt for Industrial & Construction Solutions (IA)
+User-agent: *
+Allow: /
+
+# Sitemap Index
+Sitemap: https://industrialadhesives.in/sitemap.xml
